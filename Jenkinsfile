@@ -1,23 +1,26 @@
 pipeline {
   agent any
+
   stages {
+
     stage('Build') {
       steps {
-        echo 'Building project...'
-        bat 'echo "Compiling"'
+        echo 'Checking project files...'
+        bat 'dir'
       }
     }
 
     stage('Test') {
       steps {
-        echo 'Running tests...'
-        bat 'echo "compiling"'
+        echo 'Validating PHP syntax...'
+        bat 'php -l index.php'
       }
     }
 
     stage('Deploy') {
       steps {
-        echo 'Deploying application...'
+        echo 'Deploying to XAMPP...'
+        bat 'xcopy /E /I /Y * C:\\xampp\\htdocs\\webproject'
       }
     }
 
